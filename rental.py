@@ -24,17 +24,21 @@ class Rental:
 
     def get_price(self):
         """Calculate the price for this rental."""
-        amount = 0
-        if self.get_movie().get_price_code() == Movie.REGULAR:
+        price_code = self.get_movie().get_price_code()
+
+        if price_code == Movie.REGULAR:
             amount = 2.0
             if self.get_days_rented() > 2:
                 amount += 1.5 * (self.get_days_rented() - 2)
-        elif self.get_movie().get_price_code() == Movie.CHILDRENS:
+        elif price_code == Movie.CHILDRENS:
             amount = 1.5
             if self.get_days_rented() > 3:
                 amount += 1.5 * (self.get_days_rented() - 3)
-        elif self.get_movie().get_price_code() == Movie.NEW_RELEASE:
+        elif price_code == Movie.NEW_RELEASE:
             amount = 3 * self.get_days_rented()
+        else:
+            raise ValueError(f"Unknown price code {price_code}")
+
         return amount
 
     def get_frequent_renter_points(self):
