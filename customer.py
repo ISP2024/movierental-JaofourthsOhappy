@@ -1,13 +1,12 @@
 from rental import Rental
 from movie import Movie
-import logging
 
 class Customer:
     """A customer who rents movies.
 
     The customer object holds information about the
     movies rented for the current billing period,
-    and can print a statement of their rentals.
+    and can print a statement of his rentals.
     """
 
     def __init__(self, name: str):
@@ -31,7 +30,7 @@ class Customer:
         along with total charges and frequent renter points.
         
         Returns:
-            The statement as a string.
+            the statement as a String
         """
         total_amount = 0   # total rental charges
         frequent_renter_points = 0
@@ -41,11 +40,11 @@ class Customer:
         rental_fmt = "{:40s}  {:6d} {:6.2f}\n"
         
         for rental in self.rentals:
-            # get the rental price from Rental class
-            amount = rental.get_price()
+            # get the rental price from Movie class
+            amount = rental.get_movie().get_price(rental.get_days_rented())
 
-            # get the frequent renter points from Rental class
-            frequent_renter_points += rental.get_frequent_renter_points()
+            # get the frequent renter points from Movie class
+            frequent_renter_points += rental.get_movie().get_frequent_renter_points(rental.get_days_rented())
 
             # add a detail line to the statement
             statement += rental_fmt.format(

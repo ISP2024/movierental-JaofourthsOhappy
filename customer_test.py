@@ -5,7 +5,7 @@ from rental import Rental
 from movie import Movie
 
 class CustomerTest(unittest.TestCase): 
-    """Tests for the Customer class."""
+    """Tests of the Customer class"""
     
     def setUp(self):
         """Test fixture contains:
