@@ -21,18 +21,3 @@ class Rental:
 
     def get_days_rented(self):
     	return self.days_rented
-
-    def get_price(self):
-        """Calculate the rental price based on the movie's price code."""
-        amount = 0
-        if self.movie.get_price_code() == Movie.REGULAR:
-            amount = 2.0
-            if self.get_days_rented() > 2:
-                amount += 1.5 * (self.get_days_rented() - 2)
-        elif self.movie.get_price_code() == Movie.CHILDRENS:
-            amount = 1.5
-            if self.get_days_rented() > 3:
-                amount += 1.5 * (self.get_days_rented() - 3)
-        elif self.movie.get_price_code() == Movie.NEW_RELEASE:
-            amount = 3 * self.get_days_rented()
-        return amount
