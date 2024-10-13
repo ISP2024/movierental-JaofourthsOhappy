@@ -82,3 +82,19 @@ class Customer:
         statement += "Frequent Renter Points earned: {}\n".format(frequent_renter_points)
 
         return statement
+    
+
+    def get_price(self, rental: Rental):
+        """Calculate the price for a given rental."""
+        amount = 0
+        if rental.get_movie().get_price_code() == Movie.REGULAR:
+            amount = 2.0
+            if rental.get_days_rented() > 2:
+                amount += 1.5 * (rental.get_days_rented() - 2)
+        elif rental.get_movie().get_price_code() == Movie.CHILDRENS:
+            amount = 1.5
+            if rental.get_days_rented() > 3:
+                amount += 1.5 * (rental.get_days_rented() - 3)
+        elif rental.get_movie().get_price_code() == Movie.NEW_RELEASE:
+            amount = 3 * rental.get_days_rented()
+        return amount
