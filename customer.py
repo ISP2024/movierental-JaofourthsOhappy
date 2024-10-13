@@ -31,48 +31,31 @@ class Customer:
         along with total charges and frequent renter points.
         
         Returns:
-            the statement as a String
+            The statement as a string.
         """
         total_amount = 0   # total rental charges
         frequent_renter_points = 0
-        # the .format method substitutes actual values into the fmt string
         statement = f"Rental Report for {self.name}\n\n"
         header_fmt = "{:40s}  {:6s} {:6s}\n"
         statement += header_fmt.format("Movie Title", "  Days", " Price")
         rental_fmt = "{:40s}  {:6d} {:6.2f}\n"
         
         for rental in self.rentals:
-            # compute rental change
-            amount = 0
-            if rental.get_movie().get_price_code() == Movie.REGULAR:
-                # Two days for $2, additional days 1.50 per day.
-                amount = 2.0
-                if rental.get_days_rented() > 2:
-                    amount += 1.5*(rental.get_days_rented()-2)
-            elif rental.get_movie().get_price_code() == Movie.CHILDRENS:
-                # Three days for $1.50, additional days 1.50 per day.
-                amount = 1.5
-                if rental.get_days_rented() > 3:
-                    amount += 1.5*(rental.get_days_rented()-3)
-            elif rental.get_movie().get_price_code() == Movie.NEW_RELEASE:
-                # Straight $3 per day charge
-                amount = 3*rental.get_days_rented()
-            else:
-                log = logging.getLogger()
-                log.error(f"Movie {rental.get_movie()} has unrecognized priceCode {rental.get_movie().get_price_code()}")
-            # compute the frequent renter points based on movie price code
+            # get the rental price from Rental class
+            amount = rental.get_price()
+
+            # compute the frequent renter points
             if rental.get_movie().get_price_code() == Movie.NEW_RELEASE:
-                # New release earns 1 point per day rented
                 frequent_renter_points += rental.get_days_rented()
             else:
-                # Other rentals get only 1 point
                 frequent_renter_points += 1
-            #  add a detail line to statement
+
+            # add a detail line to the statement
             statement += rental_fmt.format(
                             rental.get_movie().get_title(), 
                             rental.get_days_rented(), 
                             amount)
-            # and accumulate activity
+            
             total_amount += amount
 
         # footer: summary of charges
