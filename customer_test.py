@@ -2,7 +2,7 @@ import re
 import unittest 
 from customer import Customer
 from rental import Rental
-from movie import Movie
+from movie import RegularMovie, NewReleaseMovie, ChildrensMovie
 
 class CustomerTest(unittest.TestCase): 
     """Tests of the Customer class"""
@@ -13,9 +13,9 @@ class CustomerTest(unittest.TestCase):
         movies = list of some movies
         """
         self.c = Customer("Movie Mogul")
-        self.new_movie = Movie("Mulan", Movie.NEW_RELEASE)
-        self.regular_movie = Movie("CitizenFour", Movie.REGULAR)
-        self.childrens_movie = Movie("Frozen", Movie.CHILDRENS)
+        self.new_movie = NewReleaseMovie("Mulan")
+        self.regular_movie = RegularMovie("CitizenFour")
+        self.childrens_movie = ChildrensMovie("Frozen")
     
     def test_statement(self):
         stmt = self.c.statement()

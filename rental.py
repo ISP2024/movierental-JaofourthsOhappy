@@ -1,16 +1,10 @@
 class Rental:
     """
-    A rental of a movie by customer.
-    A realistic Rental would have fields for the dates
-    that the movie was rented and returned, from which the
-    rental period is calculated. For simplicity of this 
-    application only days_rented is recorded.
+    A rental of a movie by a customer.
     """
-    
+
     def __init__(self, movie, days_rented): 
-        """Initialize a new movie rental object for
-           a movie with known rental period (daysRented).
-        """
+        """Initialize a new movie rental object."""
         self.movie = movie
         self.days_rented = days_rented
 

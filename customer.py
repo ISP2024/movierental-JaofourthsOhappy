@@ -40,10 +40,10 @@ class Customer:
         rental_fmt = "{:40s}  {:6d} {:6.2f}\n"
         
         for rental in self.rentals:
-            # get the rental price from Movie class
+            # get the rental price from the movie object
             amount = rental.get_movie().get_price(rental.get_days_rented())
 
-            # get the frequent renter points from Movie class
+            # get the frequent renter points from the movie object
             frequent_renter_points += rental.get_movie().get_frequent_renter_points(rental.get_days_rented())
 
             # add a detail line to the statement
