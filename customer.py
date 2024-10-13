@@ -7,7 +7,7 @@ class Customer:
 
     The customer object holds information about the
     movies rented for the current billing period,
-    and can print a statement of his rentals.
+    and can print a statement of their rentals.
     """
 
     def __init__(self, name: str):
@@ -16,7 +16,7 @@ class Customer:
         self.rentals = []
 
     def add_rental(self, rental: Rental):
-        """Add a rental for this customer"""
+        """Add a rental for this customer."""
         if rental not in self.rentals:
             self.rentals.append(rental)
     
@@ -44,11 +44,8 @@ class Customer:
             # get the rental price from Rental class
             amount = rental.get_price()
 
-            # compute the frequent renter points
-            if rental.get_movie().get_price_code() == Movie.NEW_RELEASE:
-                frequent_renter_points += rental.get_days_rented()
-            else:
-                frequent_renter_points += 1
+            # get the frequent renter points from Rental class
+            frequent_renter_points += rental.get_frequent_renter_points()
 
             # add a detail line to the statement
             statement += rental_fmt.format(
@@ -65,19 +62,3 @@ class Customer:
         statement += "Frequent Renter Points earned: {}\n".format(frequent_renter_points)
 
         return statement
-    
-
-    def get_price(self, rental: Rental):
-        """Calculate the price for a given rental."""
-        amount = 0
-        if rental.get_movie().get_price_code() == Movie.REGULAR:
-            amount = 2.0
-            if rental.get_days_rented() > 2:
-                amount += 1.5 * (rental.get_days_rented() - 2)
-        elif rental.get_movie().get_price_code() == Movie.CHILDRENS:
-            amount = 1.5
-            if rental.get_days_rented() > 3:
-                amount += 1.5 * (rental.get_days_rented() - 3)
-        elif rental.get_movie().get_price_code() == Movie.NEW_RELEASE:
-            amount = 3 * rental.get_days_rented()
-        return amount
