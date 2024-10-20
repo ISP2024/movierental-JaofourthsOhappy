@@ -1,15 +1,19 @@
 class Movie:
     """A movie available for rent."""
 
-    def __init__(self, title):
-        """Initialize a movie with a title."""
+    def __init__(self, title, movie_type):
+        """Initialize a movie with a title and type."""
         self.title = title
+        self.movie_type = movie_type
 
     def get_title(self):
         """Get the movie title."""
         return self.title
 
-
+    def get_movie_type(self):
+        """Get the movie type."""
+        return self.movie_type
+    
 class RegularMovie(Movie):
     """A regular movie."""
 
