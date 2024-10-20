@@ -1,20 +1,17 @@
-# Demonstrate the movie rental code.
-# Create a customer with some movies and print a statement.
-
 from movie import Movie
 from rental import Rental
 from customer import Customer
+from pricing import RegularMovie, NewReleaseMovie, ChildrensMovie
 
 def make_movies():
     """Some sample movies."""
-    movies = [
-        Movie("Air", Movie.NEW_RELEASE),
-        Movie("Oppenheimer", Movie.REGULAR),
-        Movie("Frozen", Movie.CHILDRENS),
-        Movie("Bitconned", Movie.NEW_RELEASE),
-        Movie("Particle Fever", Movie.REGULAR)
+    return [
+        Movie("Air", RegularMovie()),
+        Movie("Oppenheimer", RegularMovie()),
+        Movie("Frozen", ChildrensMovie()),
+        Movie("Bitconned", NewReleaseMovie()),
+        Movie("Particle Fever", RegularMovie())
     ]
-    return movies
 
 
 if __name__ == '__main__':
@@ -22,6 +19,6 @@ if __name__ == '__main__':
     customer = Customer("Edward Snowden")
     days = 1
     for movie in make_movies():
-        customer.add_rental(Rental(movie, days))
+        customer.add_rental(Rental(movie, days, movie.price_code))
         days = (days + 2) % 5 + 1
     print(customer.statement())

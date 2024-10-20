@@ -8,14 +8,6 @@ class Movie:
     def get_title(self):
         """Get the movie title."""
         return self.title
-    
-    def get_price(self, days_rented):
-        """Calculate the price for renting this movie."""
-        raise NotImplementedError("Subclasses should implement this method")
-    
-    def get_frequent_renter_points(self, days_rented):
-        """Calculate frequent renter points for this movie."""
-        return 1  # Default implementation returns 1 frequent renter point
 
 
 class RegularMovie(Movie):
