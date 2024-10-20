@@ -40,11 +40,10 @@ class Customer:
 
             total_amount += amount
 
-        # Footer: summary of charges
+
         statement += "\n"
         statement += "{:40s}  {:6s} {:6.2f}\n".format(
             "Total Charges", "", total_amount)
         statement += "Frequent Renter Points earned: {}\n".format(frequent_renter_points)
 
         return statement
-

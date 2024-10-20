@@ -4,7 +4,7 @@ from customer import Customer
 from pricing import RegularMovie, NewReleaseMovie, ChildrensMovie
 
 def make_movies():
-    """Some sample movies."""
+    """Some sample movies with associated pricing strategies."""
     return [
         Movie("Air", RegularMovie()),
         Movie("Oppenheimer", RegularMovie()),

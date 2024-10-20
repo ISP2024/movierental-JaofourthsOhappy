@@ -3,19 +3,19 @@ class Rental:
     A rental of a movie by a customer.
     """
 
-    def __init__(self, movie, days_rented, price_code):
+    def __init__(self, movie, days_rented, price_strategy):
         """Initialize a new movie rental object."""
         self.movie = movie
         self.days_rented = days_rented
-        self.price_code = price_code  # Added attribute
+        self.price_strategy = price_strategy  # Use the PriceStrategy instead of price code
 
     def get_price(self):
         """Get the rental price."""
-        return self.price_code.get_price(self.days_rented)
+        return self.price_strategy.get_price(self.days_rented)
 
     def get_rental_points(self):
         """Get the rental points."""
-        return self.price_code.get_rental_points(self.days_rented)
+        return self.price_strategy.get_rental_points(self.days_rented)
 
     def get_movie(self):
         """Get the movie associated with this rental."""
